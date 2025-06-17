@@ -65,17 +65,17 @@ input[type="email"] {
   margin-bottom: 20px;
 }
 
-button {
+.boton {
   background-color: white;
   color: black;
   border: none;
   padding: 10px 30px;
   cursor: pointer;
   font-weight: bold;
-  transition: background 0.3s;
+  text-decoration: none;
 }
 
-button:hover {
+boton:hover {
   background-color: #ccc;
 }
 

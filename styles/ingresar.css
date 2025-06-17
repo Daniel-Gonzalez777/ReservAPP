@@ -89,13 +89,17 @@ button {
   transition: all 0.3s ease;
 }
 
+.rcontra{
+  text-decoration-line: none;
+  color: white;
+}
+
 button:hover {
   background-color: #f0f0f0;
   transform: translateY(-2px);
 }
 
 
-/* RESPONSIVE */
 
 @media (max-width: 1279px) and (min-width: 921px) {
   .logo {
