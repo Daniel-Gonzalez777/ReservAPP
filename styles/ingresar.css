@@ -1,0 +1,162 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('/assets/images/fondo.png') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+}
+
+.div1 {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 30px;
+}
+
+.div2 {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.logo {
+  width: 150px;
+}
+
+.div3 {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+}
+
+.div3 h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.div3 p {
+  font-size: 14px;
+  margin-bottom: 30px;
+  color: #ccc;
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  background-color: transparent;
+  border: 2px solid #555;
+  border-radius: 5px;
+  color: white;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+input:focus {
+  border-color: #ff6b35;
+  outline: none;
+}
+
+::placeholder {
+  color: #888;
+}
+
+button {
+  background-color: white;
+  color: #333;
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1279px) and (min-width: 921px) {
+  .logo {
+    width: 130px;
+  }
+
+  .div3 h1 {
+    font-size: 26px;
+  }
+
+  .div3 {
+    max-width: 360px;
+  }
+}
+
+@media (max-width: 920px) and (min-width: 769px) {
+  .logo {
+    width: 120px;
+  }
+
+  .div3 {
+    max-width: 320px;
+  }
+
+  .div3 h1 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 481px) {
+  .logo {
+    width: 100px;
+  }
+
+  .div3 {
+    max-width: 90%;
+  }
+
+  .div3 h1 {
+    font-size: 22px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) and (min-width: 352px) {
+  .logo {
+    width: 90px;
+  }
+
+  .div3 h1 {
+    font-size: 20px;
+  }
+
+  .div3 {
+    max-width: 250px;
+  }
+
+  input, button {
+    width: 100%;
+  }
+}

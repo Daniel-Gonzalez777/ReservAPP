@@ -1,0 +1,171 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('/assets/images/fondo.png') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+}
+
+.div1 {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 30px;
+}
+
+.div2 {
+  display: flex;
+}
+
+.logo {
+  width: 150px;
+}
+
+.div3 {
+  margin: auto;
+  max-width: 400px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.div3 h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.div3 p {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+.div3 p a {
+  color: #ff6b35;
+  text-decoration: none;
+}
+
+.div3 p a:hover {
+  text-decoration: underline;
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 2px solid #555;
+  border-radius: 5px;
+  background: transparent;
+  color: white;
+  font-size: 16px;
+}
+
+input:focus {
+  border-color: #ff6b35;
+  outline: none;
+}
+
+::placeholder {
+  color: #888;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #ff6b35;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background: #e55a2e;
+  transform: translateY(-2px);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1279px) and (min-width: 921px) {
+  .logo {
+    width: 130px;
+  }
+
+  .div3 {
+    max-width: 360px;
+    padding: 35px;
+  }
+
+  .div3 h1 {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 920px) and (min-width: 769px) {
+  .logo {
+    width: 120px;
+  }
+
+  .div3 {
+    max-width: 320px;
+    padding: 30px;
+  }
+
+  .div3 h1 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 481px) {
+  .logo {
+    width: 100px;
+  }
+
+  .div3 {
+    max-width: 90%;
+    padding: 25px;
+  }
+
+  .div3 h1 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) and (min-width: 352px) {
+  .logo {
+    width: 90px;
+  }
+
+  .div3 {
+    max-width: 250px;
+    padding: 20px;
+  }
+
+  .div3 h1 {
+    font-size: 20px;
+  }
+
+  input,
+  button {
+    padding: 10px;
+  }
+}
