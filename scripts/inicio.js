@@ -248,7 +248,8 @@ document.addEventListener('DOMContentLoaded', () => {
         descripcion: boton.dataset.descripcion
       };
       localStorage.setItem('detalleReserva', JSON.stringify(datosReserva));
-      window.location.href = '../pages/detallesReserva.html';
+      window.location.href = '../templates/detallesReserva.html';
     });
   });
 });
+

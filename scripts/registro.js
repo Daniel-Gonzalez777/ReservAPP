@@ -6,32 +6,29 @@ const boton = document.getElementById('boton');
 
 function saveName() {
   const nombre = nombres.value.trim();
-
   const fecha = fechas.value.trim();
-
   const email = emailInput.value.trim();
-
   const password = passwords.value.trim();
 
-   if (nombre === '') {
-        alert("Por favor ingrese su nombre");
-        return; 
-    }
+  if (nombre === '') {
+    alert("Por favor ingrese su nombre");
+    return; 
+  }
 
-    if (fecha === '') {
-        alert("Por favor ingrese su fecha de nacimiento");
-        return; 
-    }
+  if (fecha === '') {
+    alert("Por favor ingrese su fecha de nacimiento");
+    return; 
+  }
 
-    if (email === '') {
-        alert("Por favor ingrese su correo electrónico");
-        return; 
-    }
+  if (email === '') {
+    alert("Por favor ingrese su correo electrónico");
+    return; 
+  }
 
-    if (password === '') {
-        alert("Por favor ingrese su contraseña");
-        return; 
-    }
+  if (password === '') {
+    alert("Por favor ingrese su contraseña");
+    return; 
+  }
 
   localStorage.setItem('userNombre', nombre);
   localStorage.setItem('userFecha', fecha);
@@ -39,6 +36,11 @@ function saveName() {
   localStorage.setItem('userPassword', password);
 
   alert("¡Datos guardados con éxito!");
+
+  window.location.href = '../templates/inicio.html';
 }
 
-boton.addEventListener('click', saveName);
+boton.addEventListener('click', function(e) {
+  e.preventDefault(); 
+  saveName();         
+});
