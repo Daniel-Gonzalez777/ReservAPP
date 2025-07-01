@@ -1,0 +1,109 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background-color: #121212;
+  color: #f4f4f4;
+}
+
+.detalle-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.hero-imagen img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.detalle-main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.detalle-info {
+  flex: 2;
+}
+
+.detalle-card {
+  flex: 1;
+  background-color: #1f1f1f;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+h1 {
+  font-size: 2rem;
+  color: #60a5fa;
+  margin-bottom: 0.5rem;
+}
+
+.descripcion-texto {
+  font-size: 1rem;
+  color: #d1d5db;
+  line-height: 1.8;
+  text-align: justify;
+  margin-top: 1rem;
+}
+
+.chips {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.chip {
+  background-color: #374151;
+  color: #f3f4f6;
+  padding: 0.4rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.detalle-card p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.detalle-card i {
+  margin-right: 0.5rem;
+  color: #60a5fa;
+}
+
+#volver {
+  margin-top: 1rem;
+  padding: 0.7rem 1.2rem;
+  background-color: #60a5fa;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background 0.3s;
+  width: 100%;
+}
+
+#volver:hover {
+  background-color: #3b82f6;
+}
+
+@media (max-width: 768px) {
+  .detalle-main {
+    flex-direction: column;
+  }
+
+  .hero-imagen img {
+    height: 250px;
+  }
+}
