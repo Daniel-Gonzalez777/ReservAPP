@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulario de Reserva</title>
+  <link rel="stylesheet" href="/styles/formularioReserva.css" />
+</head>
+<body>
+  <div class="form-container">
+    <h1>Formulario de Reserva</h1>
+    <div id="infoLugar"></div>
+
+    <form id="formReserva">
+      <label for="nombre">Tu nombre</label>
+      <input type="text" id="nombre" required />
+
+      <label for="fecha">Fecha</label>
+      <input type="date" id="fecha" required />
+
+      <label for="hora">Hora</label>
+      <input type="time" id="hora" required />
+
+      <button type="submit">Confirmar reserva</button>
+    </form>
+  </div>
+  <script src="../scripts/formularioReserva.js"></script>
+</body>
+</html>
