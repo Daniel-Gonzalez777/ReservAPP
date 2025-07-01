@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalles de la Reserva</title>
+  <link rel="stylesheet" href="../styles/detallesReserva.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+  <div class="detalle-container">
+    <div class="hero-imagen">
+      <img id="imagen-lugar" src="" alt="Imagen del lugar">
+    </div>
+
+    <div class="detalle-main">
+      <div class="detalle-info">
+        <h1 id="nombre-lugar">Nombre del Lugar</h1>
+
+        <div class="chips">
+          <span class="chip"><i class="fa-solid fa-calendar-days"></i> <span id="fecha"></span></span>
+          <span class="chip"><i class="fa-solid fa-clock"></i> <span id="hora"></span></span>
+        </div>
+
+        <p id="descripcion" class="descripcion-texto"></p>
+      </div>
+
+      <div class="detalle-card">
+        <p><i class="fa-solid fa-location-dot"></i> <strong>Dirección:</strong><br><span id="direccion"></span></p>
+        <p><i class="fa-solid fa-money-bill-wave"></i> <strong>Precio:</strong><br>$<span id="precio"></span></p>
+        <button id="volver"><i class="fa-solid fa-arrow-left"></i> Volver al inicio</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 🔥 Datos quemados de prueba
+    const reserva = {
+      nombre: "Sala Ejecutiva Medellín",
+      direccion: "Cra. 43A #1A Sur-188, Medellín",
+      fecha: "2025-07-01",
+      hora: "14:00",
+      precio: "80.000",
+      imagen: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+      descripcion: "Espacio moderno con aire acondicionado, pantalla de proyección y capacidad para 12 personas. Perfecta para reuniones ejecutivas."
+    };
+
+    // 🧠 Inyectar los datos al DOM
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('imagen-lugar').src = reserva.imagen;
+      document.getElementById('nombre-lugar').textContent = reserva.nombre;
+      document.getElementById('direccion').textContent = reserva.direccion;
+      document.getElementById('fecha').textContent = reserva.fecha;
+      document.getElementById('hora').textContent = reserva.hora;
+      document.getElementById('precio').textContent = reserva.precio;
+      document.getElementById('descripcion').textContent = reserva.descripcion;
+
+      document.getElementById('volver').addEventListener('click', () => {
+        window.location.href = '../pages/inicio.html'; // Ajusta si está en otro directorio
+      });
+    });
+  </script>
+</body>
+</html>

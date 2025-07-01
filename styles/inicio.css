@@ -186,3 +186,78 @@ body {
 .main-content::-webkit-scrollbar-thumb:hover {
     background: #6b7280;
 }
+
+.bienvenida {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e1e1e;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.btn-reserva {
+  background-color: #22c55e;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-reserva:hover {
+  background-color: #16a34a;
+}
+
+.resumen-reservas {
+  background-color: #1e1e1e;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.resumen-reservas h3 {
+  margin-bottom: 1rem;
+}
+
+.contenedor-resumen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.proximas-reservas,
+.reservas-pasadas {
+  flex: 1;
+  min-width: 300px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+}
+
+th, td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #333;
+  text-align: left;
+}
+
+th {
+  color: #ccc;
+}
+
+.btn-ver {
+  background-color: #374151;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-ver:hover {
+  background-color: #4b5563;
+}

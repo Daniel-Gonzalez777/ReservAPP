@@ -223,3 +223,32 @@ if (typeof module !== 'undefined' && module.exports) {
         loadContent
     };
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const botonesVer = document.querySelectorAll('.btn-ver');
+  botonesVer.forEach(boton => {
+    boton.addEventListener('click', () => {
+      const info = boton.getAttribute('data-info');
+      alert(info);
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const botonesVer = document.querySelectorAll('.btn-ver');
+  botonesVer.forEach(boton => {
+    boton.addEventListener('click', () => {
+      const datosReserva = {
+        nombre: boton.dataset.nombre,
+        direccion: boton.dataset.direccion,
+        fecha: boton.dataset.fecha,
+        hora: boton.dataset.hora,
+        precio: boton.dataset.precio,
+        imagen: boton.dataset.imagen,
+        descripcion: boton.dataset.descripcion
+      };
+      localStorage.setItem('detalleReserva', JSON.stringify(datosReserva));
+      window.location.href = '../pages/detallesReserva.html';
+    });
+  });
+});
