@@ -142,11 +142,9 @@ const lugares = [
     return;
   }
 
-  // Guardamos temporalmente el lugar en localStorage
   localStorage.setItem('lugarSeleccionado', JSON.stringify(lugar));
 
-  // Redirigimos al formulario
-  window.location.href = '/templates/formularioReserva.html';
+  window.location.href = '../templates/formularioReserva.html';
 }
 
     function showNotification(message, type = 'success') {
@@ -162,12 +160,10 @@ const lugares = [
       }, 4000);
     }
 
-    // Event listeners
     document.getElementById('searchInput').addEventListener('input', filterLugares);
     document.getElementById('capacityFilter').addEventListener('change', filterLugares);
     document.getElementById('availabilityFilter').addEventListener('change', filterLugares);
 
-    // Modal close functionality
     document.querySelector('.close').addEventListener('click', () => {
       document.getElementById('modal').style.display = 'none';
     });

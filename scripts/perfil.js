@@ -4,16 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!usuarioActual) {
     alert('No hay sesión activa');
-    window.location.href = '/templates/ingresar.html';
+    window.location.href = '../templates/ingresar.html';
     return;
   }
 
-  // Mostrar datos del usuario
   document.getElementById('nombreUsuario').textContent = usuarioActual.nombre;
   document.getElementById('emailUsuario').textContent = usuarioActual.email;
   document.getElementById('fechaUsuario').textContent = usuarioActual.fecha;
 
-  // Mostrar actividad
   const reservasUsuario = reservasPorUsuario[usuarioActual.email] || [];
   document.getElementById('totalReservas').textContent = reservasUsuario.length;
 
