@@ -3,48 +3,48 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function mostrarReservasEnInicio() {
-  const tabla = document.getElementById('tabla-proximas');
-  if (!tabla) return;
+  const usuarioObj = JSON.parse(localStorage.getItem('usuarioActual'));
+  if (!usuarioObj) return;
+  const usuario = usuarioObj.email;
 
-  const reservas = JSON.parse(localStorage.getItem('historialReservas')) || [];
+  const tabla = document.getElementById('tabla-proximas');
+  const reservasPorUsuario = JSON.parse(localStorage.getItem('reservasPorUsuario')) || {};
+  const reservas = reservasPorUsuario[usuario] || [];
 
   tabla.innerHTML = '';
 
-  reservas.forEach(reserva => {
+  reservas.forEach((reserva, index) => {
     const fila = document.createElement('tr');
     fila.innerHTML = `
       <td>${reserva.nombre}</td>
       <td>${reserva.fecha}</td>
       <td>${reserva.hora}</td>
-      <td>
-        <button class="btn-ver"
-          data-nombre="${reserva.nombre}"
-          data-direccion="${reserva.direccion || ''}"
-          data-fecha="${reserva.fecha}"
-          data-hora="${reserva.hora}"
-          data-precio="${reserva.precio}"
-          data-imagen="${reserva.imagen || ''}"
-          data-descripcion="${reserva.descripcion || ''}">
-          Ver
-        </button>
-      </td>
+      <td><button class="btn-cancelar" data-index="${index}">Cancelar</button></td>
     `;
     tabla.appendChild(fila);
   });
 
-  document.querySelectorAll('.btn-ver').forEach(boton => {
+  document.querySelectorAll('.btn-cancelar').forEach(boton => {
     boton.addEventListener('click', () => {
-      const datosReserva = {
-        nombre: boton.dataset.nombre,
-        direccion: boton.dataset.direccion,
-        fecha: boton.dataset.fecha,
-        hora: boton.dataset.hora,
-        precio: boton.dataset.precio,
-        imagen: boton.dataset.imagen,
-        descripcion: boton.dataset.descripcion
-      };
-      localStorage.setItem('detalleReserva', JSON.stringify(datosReserva));
-      window.location.href = '/templates/detallesReserva.html';
+      const index = parseInt(boton.getAttribute('data-index'));
+      cancelarReserva(index);
     });
   });
+}
+
+function cancelarReserva(index) {
+  const usuarioObj = JSON.parse(localStorage.getItem('usuarioActual'));
+  if (!usuarioObj) return;
+  const usuario = usuarioObj.email;
+
+  let reservasPorUsuario = JSON.parse(localStorage.getItem('reservasPorUsuario')) || {};
+  reservasPorUsuario[usuario].splice(index, 1);
+
+  localStorage.setItem('reservasPorUsuario', JSON.stringify(reservasPorUsuario));
+  mostrarReservasEnInicio();
+}
+
+function cerrarSesion() {
+  localStorage.removeItem('usuarioActual');
+  window.location.href = '../templates/ingresar.html';
 }
