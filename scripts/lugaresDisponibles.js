@@ -136,21 +136,18 @@ const lugares = [
     }
 
     function reservar(id) {
-      const lugar = lugares.find(l => l.id === id);
-      if (!lugar || !lugar.disponible) {
-        showNotification('Este lugar no está disponible para reserva.', 'error');
-        return;
-      }
-      
-      // Simulamos el proceso de reserva
-      showNotification(`¡Reserva iniciada para ${lugar.nombre}! Te redirigiremos al formulario de reserva.`, 'success');
-      
-      // Aquí podrías redirigir a una página de reserva real
-      setTimeout(() => {
-        // window.location.href = `reserva.html?lugar=${id}`;
-        console.log(`Reservando lugar ${id}: ${lugar.nombre}`);
-      }, 2000);
-    }
+  const lugar = lugares.find(l => l.id === id);
+  if (!lugar || !lugar.disponible) {
+    showNotification('Este lugar no está disponible para reserva.', 'error');
+    return;
+  }
+
+  // Guardamos temporalmente el lugar en localStorage
+  localStorage.setItem('lugarSeleccionado', JSON.stringify(lugar));
+
+  // Redirigimos al formulario
+  window.location.href = '/templates/formularioReserva.html';
+}
 
     function showNotification(message, type = 'success') {
       const notification = document.getElementById('notification');
