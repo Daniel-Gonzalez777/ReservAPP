@@ -41,6 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('reservasPorUsuario', JSON.stringify(reservasPorUsuario));
 
     alert('Reserva confirmada');
-    window.location.href = '/templates/inicio.html';
+    window.location.href = '../templates/inicio.html';
   });
 });

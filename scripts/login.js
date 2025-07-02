@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (usuarioEncontrado) {
       alert('Inicio de sesión exitoso');
-      localStorage.setItem('usuarioActual', JSON.stringify(usuarioEncontrado)); // GUARDA TODO EL OBJETO
+      localStorage.setItem('usuarioActual', JSON.stringify(usuarioEncontrado)); 
       window.location.href = '../templates/inicio.html';
     }else {
       alert('Correo o contraseña incorrectos. Intenta de nuevo.');
