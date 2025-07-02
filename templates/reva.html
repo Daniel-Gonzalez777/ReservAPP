@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="/styles/lugaresDisponibles.css">
+  <link rel="stylesheet" href="/styles/reva.css">
+  <title>REVA - Asistente IA</title>
+</head>
+<body>
+  <!-- Barra de navegación -->
+  <nav class="navigation-bar">
+    <div class="logo">
+      <div class="logo-icon">R</div>
+      <h1 class="app-name">ReservApp</h1>
+    </div>
+    <div class="nav-links">
+      <a href="inicio.html" class="nav-link">Inicio</a>
+      <a href="lugaresDisponibles.html" class="nav-link">Lugares</a>
+      <a href="calendario.html" class="nav-link">Calendario</a>
+      <a href="#" class="nav-link active">REVA</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1 class="page-title">REVA: Tu asistente inteligente</h1>
+      <p class="page-subtitle">Haz preguntas sobre el sistema, reservas, disponibilidad y más.</p>
+    </div>
+
+    <div class="ia-box">
+      <textarea id="inputText" placeholder="¿En qué puedo ayudarte hoy, humano?"></textarea>
+      <button onclick="sendToGemini()">Consultar a REVA</button>
+      <div id="loader" class="loader" style="display:none;">Consultando...</div>
+      <div id="geminiResponse" class="response-box"></div>
+    </div>
+  </div>
+
+  <script src="/scripts/reva.js"></script>
+</body>
+</html>
