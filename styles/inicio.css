@@ -144,7 +144,6 @@
 
     .contenedor-resumen {
         display: grid;
-        grid-template-columns: 1fr 1fr;
         gap: 40px;
     }
 
@@ -264,6 +263,29 @@
     .nav-link.active {
         color: #667eea;
         background: rgba(102, 126, 234, 0.1);
+    }
+
+    .btn-cancelar {
+        background: #e53e3e;
+        color: white;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-cancelar:hover {
+        background: #c53030;
+    }
+
+    .proximas-reservas {
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 15px;
+        padding: 20px; /* antes 30px */
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        overflow-x: auto;
     }
 
     @media (max-width: 768px) {

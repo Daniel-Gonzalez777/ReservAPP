@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Perfil - ReservApp</title>
+  <link rel="stylesheet" href="/styles/perfil.css">
+</head>
+<body>
+  <nav class="navigation-bar">
+    <div class="logo">
+      <div class="logo-icon">R</div>
+      <h1 class="app-name">ReservApp</h1>
+    </div>
+    <div class="nav-links">
+      <a href="/templates/inicio.html" class="nav-link">Inicio</a>
+      <a href="/templates/lugaresDisponibles.html" class="nav-link">Lugares</a>
+      <a href="/templates/reva.html" class="nav-link">REVA</a>
+      <a href="#" class="nav-link active">Perfil</a>
+    </div>
+  </nav>
+
+    <div class="container">
+        <h2>Mi Perfil</h2>
+    <div class="perfil-card">
+        <div class="perfil-info">
+            <h3 id="nombreUsuario">Nombre Usuario</h3>
+            <p>Email: <span id="emailUsuario">correo@ejemplo.com</span></p>
+            <p>Fecha de nacimiento: <span id="fechaUsuario">--</span></p>
+        </div>
+        <div class="perfil-estadisticas">
+            <h4>Actividad</h4>
+            <p>Total de reservas: <span id="totalReservas">0</span></p>
+            <p>Última reserva: <span id="ultimaReserva">N/A</span></p>
+        </div>
+    </div>
+    </div>
+
+  <script src="/scripts/perfil.js"></script>
+</body>
+</html>
