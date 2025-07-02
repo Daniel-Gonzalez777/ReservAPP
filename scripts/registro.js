@@ -59,7 +59,7 @@ async function saveName() {
   localStorage.setItem('usuarios', JSON.stringify(usuariosGuardados));
 
   alert("¡Datos guardados con éxito!");
-  window.location.href = '../templates/inicio.html';
+  window.location.href = 'templates/inicio.html';
 }
 
 boton.addEventListener('click', function(e) {
