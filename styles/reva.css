@@ -1,0 +1,50 @@
+.ia-box {
+  margin-top: 30px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+}
+
+.ia-box textarea {
+  width: 100%;
+  height: 120px;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  margin-bottom: 15px;
+}
+
+.ia-box button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.ia-box button:hover {
+  background-color: #0056b3;
+}
+
+.response-box {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f0f4ff;
+  border-left: 4px solid #007bff;
+  border-radius: 10px;
+  white-space: pre-wrap;
+  font-size: 1rem;
+  color: #333;
+}
+
+.loader {
+  margin-top: 10px;
+  color: #007bff;
+  font-style: italic;
+}
