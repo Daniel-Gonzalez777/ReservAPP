@@ -30,10 +30,25 @@ function saveName() {
     return; 
   }
 
-  localStorage.setItem('userNombre', nombre);
-  localStorage.setItem('userFecha', fecha);
-  localStorage.setItem('userEmail', email);
-  localStorage.setItem('userPassword', password);
+  const usuariosGuardados = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+  const existe = usuariosGuardados.some(user => user.email === email);
+  if (existe) {
+    alert("Este correo ya está registrado.");
+    return;
+  }
+
+    const nuevoUsuario = {
+    nombre,
+    fecha,
+    email,
+    password
+  };
+
+    usuariosGuardados.push(nuevoUsuario);
+
+    localStorage.setItem('usuarios', JSON.stringify(usuariosGuardados));
+
 
   alert("¡Datos guardados con éxito!");
 
