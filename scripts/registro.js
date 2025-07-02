@@ -57,6 +57,7 @@ async function saveName() {
 
   usuariosGuardados.push(nuevoUsuario);
   localStorage.setItem('usuarios', JSON.stringify(usuariosGuardados));
+  localStorage.setItem('usuarioActual', JSON.stringify(nuevoUsuario));
 
   alert("¡Datos guardados con éxito!");
   window.location.href = 'templates/inicio.html';
