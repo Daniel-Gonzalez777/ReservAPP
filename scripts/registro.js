@@ -4,6 +4,7 @@ const emailInput = document.getElementById('email');
 const passwords = document.getElementById('password');
 const boton = document.getElementById('boton');
 
+
 function saveName() {
   const nombre = nombres.value.trim();
   const fecha = fechas.value.trim();

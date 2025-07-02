@@ -9,19 +9,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailIngresado = emailInput.value.trim();
     const passwordIngresado = passwordInput.value.trim();
 
-    const emailGuardado = localStorage.getItem('userEmail');
-    const passwordGuardado = localStorage.getItem('userPassword');
-
     if (emailIngresado === '' || passwordIngresado === '') {
       alert('Por favor completa todos los campos');
       return;
     }
 
-    if (emailIngresado === emailGuardado && passwordIngresado === passwordGuardado) {
+    const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+    const usuarioEncontrado = usuarios.find(user => 
+      user.email === emailIngresado && user.password === passwordIngresado
+    );
+
+    if (usuarioEncontrado) {
       alert('Inicio de sesión exitoso');
-      window.location.href = '/templates/inicio.html';
+      window.location.href = '../templates/inicio.html';
     } else {
       alert('Correo o contraseña incorrectos. Intenta de nuevo.');
     }
   });
 });
+
