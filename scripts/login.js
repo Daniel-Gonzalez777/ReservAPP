@@ -31,10 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (usuarioEncontrado) {
       alert('Inicio de sesión exitoso');
+      localStorage.setItem('usuarioActual', JSON.stringify(usuarioEncontrado)); // GUARDA TODO EL OBJETO
       window.location.href = '../templates/inicio.html';
-    } else {
+    }else {
       alert('Correo o contraseña incorrectos. Intenta de nuevo.');
     }
   });
 });
-
