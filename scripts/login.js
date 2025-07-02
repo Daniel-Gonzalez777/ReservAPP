@@ -3,7 +3,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById('password');
 
-  form.addEventListener('submit', (e) => {
+    async function hashTexto(texto) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(texto);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  form.addEventListener('submit', async(e) => {
     e.preventDefault();
 
     const emailIngresado = emailInput.value.trim();
@@ -15,9 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+    const passwordHasheada = await hashTexto(passwordIngresado);
 
     const usuarioEncontrado = usuarios.find(user => 
-      user.email === emailIngresado && user.password === passwordIngresado
+      user.email === emailIngresado && user.password === passwordHasheada
     );
 
     if (usuarioEncontrado) {

@@ -4,8 +4,15 @@ const emailInput = document.getElementById('email');
 const passwords = document.getElementById('password');
 const boton = document.getElementById('boton');
 
+async function hashTexto(texto) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(texto);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
 
-function saveName() {
+async function saveName() {
   const nombre = nombres.value.trim();
   const fecha = fechas.value.trim();
   const email = emailInput.value.trim();
@@ -39,20 +46,19 @@ function saveName() {
     return;
   }
 
-    const nuevoUsuario = {
+  const passwordHasheada = await hashTexto(password);
+
+  const nuevoUsuario = {
     nombre,
     fecha,
     email,
-    password
+    password: passwordHasheada
   };
 
-    usuariosGuardados.push(nuevoUsuario);
-
-    localStorage.setItem('usuarios', JSON.stringify(usuariosGuardados));
-
+  usuariosGuardados.push(nuevoUsuario);
+  localStorage.setItem('usuarios', JSON.stringify(usuariosGuardados));
 
   alert("¡Datos guardados con éxito!");
-
   window.location.href = '../templates/inicio.html';
 }
 
