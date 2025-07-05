@@ -4,16 +4,16 @@ const lugares = [
         nombre: "Sala de Conferencias A",
         descripcion: "Amplio espacio ideal para presentaciones y reuniones corporativas con equipamiento audiovisual completo.",
         capacidad: "20 personas",
-        precio: "$50/hora",
+        precio: "150.000 COP/hora",
         disponible: true,
-        icono: "🏢"
+        icono: "../assets/images/sala-conferencias.png"
       },
       {
         id: 2,
         nombre: "Oficina Privada 1",
         descripcion: "Espacio privado perfecto para reuniones ejecutivas y llamadas confidenciales.",
         capacidad: "8 personas",
-        precio: "$30/hora",
+        precio: "$120.000 COP/hora",
         disponible: true,
         icono: "🏪"
       },
@@ -22,7 +22,7 @@ const lugares = [
         nombre: "Espacio Coworking",
         descripcion: "Ambiente colaborativo con mesas flexibles y excelente conectividad wifi.",
         capacidad: "15 personas",
-        precio: "$25/hora",
+        precio: "$100.000 COP/hora",
         disponible: false,
         icono: "💼"
       },
@@ -31,7 +31,7 @@ const lugares = [
         nombre: "Sala de Reuniones B",
         descripcion: "Sala moderna con pizarra digital y sistema de videoconferencia integrado.",
         capacidad: "12 personas",
-        precio: "$40/hora",
+        precio: "160.000 COP/hora",
         disponible: true,
         icono: "📋"
       },
@@ -40,7 +40,7 @@ const lugares = [
         nombre: "Auditorio Principal",
         descripcion: "Gran auditorio con capacidad para eventos masivos y presentaciones importantes.",
         capacidad: "100 personas",
-        precio: "$150/hora",
+        precio: "$600.000 COP/hora",
         disponible: true,
         icono: "🎭"
       },
@@ -49,7 +49,7 @@ const lugares = [
         nombre: "Sala Creativa",
         descripcion: "Espacio diseñado para brainstorming y sesiones creativas con mobiliario flexible.",
         capacidad: "10 personas",
-        precio: "$35/hora",
+        precio: "$120.000 COP/hora",
         disponible: false,
         icono: "🎨"
       }
