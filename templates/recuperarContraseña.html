@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Recuperar Contraseña</title>
+  <link rel="stylesheet" href="../styles/recuperarContraseña.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Recuperar Contraseña</h2>
+
+    <label>Correo electrónico</label>
+    <input type="email" id="email" placeholder="Ingresa tu correo" required>
+
+    <label>Nombre completo</label>
+    <input type="text" id="nombre" placeholder="Ingresa tu nombre" required>
+
+    <label>Fecha de nacimiento</label>
+    <input type="date" id="fecha" required>
+
+    <button onclick="verificarDatos()">Verificar identidad</button>
+
+    <div id="resetSection" style="display: none;">
+      <label>Nueva contraseña</label>
+      <input type="password" id="newPassword" placeholder="Nueva contraseña">
+      <button onclick="guardarNuevaContraseña()">Guardar nueva contraseña</button>
+    </div>
+
+    <p id="mensaje"></p>
+  </div>
+
+  <script src="../scripts/recuperarContraseña.js"></script>
+</body>
+</html>
