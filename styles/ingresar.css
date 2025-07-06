@@ -99,7 +99,23 @@ button:hover {
   transform: translateY(-2px);
 }
 
+.registro-texto {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #ccc;
+}
 
+.registro-enlace {
+  color: #6a7397;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.registro-enlace:hover {
+  color: #72698c;
+  text-decoration: underline;
+}
 
 @media (max-width: 1279px) and (min-width: 921px) {
   .logo {

@@ -10,51 +10,30 @@ body, html {
   background: url('../assets/images/fondo.png') no-repeat center center fixed;
   background-size: cover;
   color: white;
-}
-
-.div1 {
   display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 30px;
+  justify-content: center;
+  align-items: center;
 }
 
-.div2 {
-  display: flex;
-}
-
-.logo {
-  width: 150px;
-}
-
-.div3 {
-  margin: auto;
-  max-width: 400px;
+.form-container {
   width: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  max-width: 420px;
+  background: rgba(0, 0, 0, 0.75);
   padding: 40px;
-  border-radius: 10px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
   text-align: center;
 }
 
-.div3 h1 {
+.form-container h1 {
   font-size: 28px;
   margin-bottom: 10px;
 }
 
-.div3 p {
+.form-container p {
   font-size: 14px;
-  color: #ccc;
   margin-bottom: 30px;
-}
-
-.div3 p a {
-  color: #ff6b35;
-  text-decoration: none;
-}
-
-.div3 p a:hover {
-  text-decoration: underline;
+  color: #ccc;
 }
 
 label {
@@ -65,18 +44,29 @@ label {
   letter-spacing: 1px;
 }
 
-input {
+input,
+select {
   width: 100%;
   padding: 12px;
-  margin-bottom: 20px;
+  background-color: transparent;
   border: 2px solid #555;
   border-radius: 5px;
-  background: transparent;
   color: white;
+  margin-bottom: 20px;
   font-size: 16px;
+  appearance: none;
 }
 
-input:focus {
+/* Ícono personalizado para el SELECT */
+select {
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9L2 3h8L6 9z' fill='%23ff6b35'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+input:focus,
+select:focus {
   border-color: #ff6b35;
   outline: none;
 }
@@ -86,86 +76,35 @@ input:focus {
 }
 
 button {
-  width: 100%;
-  padding: 12px;
-  background: #ff6b35;
-  color: white;
+  background-color: white;
+  color: #333;
   border: none;
+  padding: 12px;
   border-radius: 5px;
-  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s, transform 0.3s;
+  transition: all 0.3s ease;
+  width: 100%;
 }
 
 button:hover {
-  background: #e55a2e;
+  background-color: #f0f0f0;
   transform: translateY(-2px);
 }
 
+.rcontra {
+  text-decoration: none;
+  color: white;
+}
+
 /* RESPONSIVE */
-
-@media (max-width: 1279px) and (min-width: 921px) {
-  .logo {
-    width: 130px;
-  }
-
-  .div3 {
-    max-width: 360px;
-    padding: 35px;
-  }
-
-  .div3 h1 {
-    font-size: 26px;
-  }
-}
-
-@media (max-width: 920px) and (min-width: 769px) {
-  .logo {
-    width: 120px;
-  }
-
-  .div3 {
-    max-width: 320px;
-    padding: 30px;
-  }
-
-  .div3 h1 {
-    font-size: 24px;
-  }
-}
-
-@media (max-width: 768px) and (min-width: 481px) {
-  .logo {
-    width: 100px;
-  }
-
-  .div3 {
+@media (max-width: 480px) {
+  .form-container {
+    padding: 30px 20px;
     max-width: 90%;
-    padding: 25px;
   }
 
-  .div3 h1 {
+  .form-container h1 {
     font-size: 22px;
-  }
-}
-
-@media (max-width: 480px) and (min-width: 352px) {
-  .logo {
-    width: 90px;
-  }
-
-  .div3 {
-    max-width: 250px;
-    padding: 20px;
-  }
-
-  .div3 h1 {
-    font-size: 20px;
-  }
-
-  input,
-  button {
-    padding: 10px;
   }
 }

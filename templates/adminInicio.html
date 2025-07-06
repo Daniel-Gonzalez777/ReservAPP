@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel de Administrador</title>
+  <link rel="stylesheet" href="../styles/inicio.css">
+  <link rel="stylesheet" href="../styles/adminInicio.css">
+</head>
+<body>
+
+  <header class="navigation-bar">
+    <div class="logo">
+      <div class="logo-icon">R</div>
+      <span class="app-name">ReservApp</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="#" class="nav-link active">Panel del Administrador</a>
+      <a href="#" id="btnCerrarSesion" class="nav-link">Cerrar sesión</a>
+    </nav>
+  </header>
+
+  <main class="contenedor-admin">
+    <section class="panel-admin">
+      <button class="btn-admin" id="verReservasBtn">Ver todas las reservas</button>
+      <button class="btn-admin" id="verUsuariosBtn">Ver usuarios registrados</button>
+      <button class="btn-admin" id="verLugaresBtn">Ver lugares disponibles</button>
+    </section>
+
+    <section id="contenidoAdmin">
+      <!-- Aquí se cargará dinámicamente la información -->
+    </section>
+  </main>
+
+  <script src="../scripts/adminInicio.js"></script>
+</body>
+</html>
