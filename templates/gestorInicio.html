@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel Gestor</title>
+  <link rel="stylesheet" href="../styles/gestor.css">
+</head>
+<body>
+  <div class="navigation-bar">
+    <div class="logo">
+      <div class="logo-icon">R</div>
+      <span class="app-name">ReservApp</span>
+    </div>
+    <div class="nav-links">
+      <a href="#" id="linkPerfil" class="nav-link">Perfil</a>
+      <a href="#" id="linkGestionar" class="nav-link active">Gestionar mis lugares</a>
+      <a href="#" id="cerrarSesion" class="nav-link">Cerrar Sesión</a>
+    </div>
+  </div>
+
+  <div class="container">
+    
+    <!-- Sección de PERFIL -->
+    <section id="seccionPerfil" style="display: none;">
+      <h2>Mi Perfil</h2>
+      <div class="perfil-info">
+        <p><strong>Nombre:</strong> <span id="perfilNombre"></span></p>
+        <p><strong>Correo:</strong> <span id="perfilCorreo"></span></p>
+        <p><strong>Fecha de nacimiento:</strong> <span id="perfilFecha"></span></p>
+        <p><strong>Rol:</strong> <span id="perfilRol"></span></p>
+      </div>
+    </section>
+
+    <!-- Sección de GESTIÓN -->
+    <section id="seccionGestion">
+      <section class="formulario-agregar">
+        <h2>Agregar Nuevo Lugar</h2>
+        <form id="formAgregarLugar">
+  <label for="nombreLugar">Nombre del lugar</label>
+  <input type="text" id="nombreLugar" required>
+
+  <label for="ubicacionLugar">Ubicación</label>
+  <input type="text" id="ubicacionLugar" required>
+
+  <label for="descripcionLugar">Descripción</label>
+  <textarea id="descripcionLugar" required></textarea>
+
+  <label for="capacidadLugar">Capacidad</label>
+  <input type="number" id="capacidadLugar" required min="1">
+
+  <label for="precioLugar">Precio por hora ($COP)</label>
+  <input type="number" id="precioLugar" required min="0">
+
+  <button type="submit">Publicar lugar</button>
+</form>
+
+      </section>
+
+      <section class="lista-lugares">
+        <h2>Mis Lugares Publicados</h2>
+        <div id="lugaresContenedor" class="lugares-grid">
+        </div>
+      </section>
+    </section>
+  </div>
+
+  <script src="../scripts/gestor.js"></script>
+</body>
+</html>
