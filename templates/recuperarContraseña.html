@@ -18,12 +18,19 @@
     <label>Fecha de nacimiento</label>
     <input type="date" id="fecha" required>
 
+    <label>Tipo de cuenta</label>
+    <select id="rol" required>
+      <option value="">Seleccione un rol</option>
+      <option value="usuario">Usuario</option>
+      <option value="gestor">Gestor</option>
+    </select>
+
     <button onclick="verificarDatos()">Verificar identidad</button>
 
     <div id="resetSection" style="display: none;">
       <label>Nueva contraseña</label>
       <input type="password" id="newPassword" placeholder="Nueva contraseña">
-      <button onclick="guardarNuevaContraseña()">Guardar nueva contraseña</button>
+      <button onclick="guardarNuevaContraseña()">Cambiar contraseña</button>
     </div>
 
     <p id="mensaje"></p>
