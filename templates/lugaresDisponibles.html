@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="../styles/lugaresDisponibles.css">
   <title>Lugares Disponibles - ReservApp</title>
-  
 </head>
 <body>
   <nav class="navigation-bar">
@@ -14,10 +13,11 @@
       <h1 class="app-name">ReservApp</h1>
     </div>
     <div class="nav-links">
-      <a href="inicio.html" class="nav-link">Inicio</a>
+      <a href="inicio.html" id="linkInicio" class="nav-link">Inicio</a>
       <a href="#" class="nav-link active">Lugares</a>
-      <a href="reva.html" class="nav-link">REVA</a>
+      <a href="reva.html" id="linkReva" class="nav-link">REVA</a>
       <a href="perfil.html" class="nav-link">Perfil</a>
+      <a href="#" class="nav-link" id="cerrarSesionBtn">Cerrar sesión</a>
     </div>
   </nav>
 
@@ -53,12 +53,9 @@
       </div>
     </div>
 
-    <div class="lugares-grid" id="lugaresGrid">
-      <!-- Los lugares se cargarán dinámicamente -->
-    </div>
+    <div class="lugares-grid" id="lugaresGrid"></div>
   </div>
 
-  <!-- Modal para detalles -->
   <div id="modal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -66,13 +63,10 @@
     </div>
   </div>
 
-  <!-- Notificación -->
   <div id="notification" class="notification">
     <span id="notificationText"></span>
   </div>
 
-  <script src="../scripts/lugaresDisponibles.js">
-    
-  </script>
+  <script src="../scripts/lugaresDisponibles.js"></script>
 </body>
 </html>
