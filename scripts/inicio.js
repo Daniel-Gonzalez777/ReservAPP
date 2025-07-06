@@ -38,8 +38,6 @@ function cancelarReserva(index) {
 
   let reservasPorUsuario = JSON.parse(localStorage.getItem('reservasPorUsuario')) || {};
   let reservasGlobal = JSON.parse(localStorage.getItem('reservas')) || [];
-  let lugares = JSON.parse(localStorage.getItem('lugares')) || [];
-  let lugaresPorDefecto = JSON.parse(localStorage.getItem('lugaresPorDefecto')) || [];
 
   if (!reservasPorUsuario[email]) return;
 
@@ -47,11 +45,17 @@ function cancelarReserva(index) {
 
   // 1. Eliminar de reservasPorUsuario
   reservasPorUsuario[email].splice(index, 1);
+  if (reservasPorUsuario[email].length === 0) {
+    delete reservasPorUsuario[email];
+  }
   localStorage.setItem('reservasPorUsuario', JSON.stringify(reservasPorUsuario));
 
   // 2. Eliminar de reservas globales
   reservasGlobal = reservasGlobal.filter(r =>
-    !(r.usuarioEmail === email && r.lugarId === reservaCancelada.lugarId && r.fecha === reservaCancelada.fecha && r.hora === reservaCancelada.hora)
+    !(r.usuarioEmail === email &&
+      r.lugarId === reservaCancelada.lugarId &&
+      r.fecha === reservaCancelada.fecha &&
+      r.hora === reservaCancelada.hora)
   );
   localStorage.setItem('reservas', JSON.stringify(reservasGlobal));
 
@@ -59,16 +63,16 @@ function cancelarReserva(index) {
   const hayMasReservas = reservasGlobal.some(r => r.lugarId === reservaCancelada.lugarId);
 
   if (!hayMasReservas) {
-    const actualizarEstado = (lista) => {
+    const actualizarEstado = (clave) => {
+      const lista = JSON.parse(localStorage.getItem(clave)) || [];
       const indexLugar = lista.findIndex(l => l.id === reservaCancelada.lugarId);
       if (indexLugar !== -1) {
         lista[indexLugar].disponible = true;
+        localStorage.setItem(clave, JSON.stringify(lista));
       }
     };
-    actualizarEstado(lugares);
-    actualizarEstado(lugaresPorDefecto);
-    localStorage.setItem('lugares', JSON.stringify(lugares));
-    localStorage.setItem('lugaresPorDefecto', JSON.stringify(lugaresPorDefecto));
+    actualizarEstado('lugares');
+    actualizarEstado('lugaresPorDefecto');
   }
 
   alert("Reserva cancelada exitosamente");

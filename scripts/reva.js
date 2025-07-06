@@ -76,3 +76,14 @@ async function callGemini(userText, apiKey, promptBase) {
 }
 
 window.sendToGemini = sendToGemini;
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btnCerrarSesion = document.getElementById('cerrarSesionBtn');
+  if (btnCerrarSesion) {
+    btnCerrarSesion.addEventListener('click', (e) => {
+      e.preventDefault();
+      localStorage.removeItem('usuarioActual');
+      window.location.href = 'ingresar.html';
+    });
+  }
+});

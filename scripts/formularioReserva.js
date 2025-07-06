@@ -44,25 +44,18 @@ document.addEventListener('DOMContentLoaded', () => {
     reservasGlobal.push(reserva);
     localStorage.setItem('reservas', JSON.stringify(reservasGlobal));
 
-    // Actualizar disponibilidad
-    const lugaresPorDefecto = JSON.parse(localStorage.getItem('lugaresPorDefecto')) || [];
-    const lugaresCreados = JSON.parse(localStorage.getItem('lugares')) || [];
-
-    let actualizado = false;
-
-    const actualizarLugar = (lista) => {
+    // Actualizar disponibilidad en ambas listas
+    const actualizarDisponibilidad = (clave) => {
+      const lista = JSON.parse(localStorage.getItem(clave)) || [];
       const index = lista.findIndex(l => l.id === lugar.id);
       if (index !== -1) {
         lista[index].disponible = false;
-        actualizado = true;
+        localStorage.setItem(clave, JSON.stringify(lista));
       }
     };
 
-    actualizarLugar(lugaresPorDefecto);
-    actualizarLugar(lugaresCreados);
-
-    localStorage.setItem('lugaresPorDefecto', JSON.stringify(lugaresPorDefecto));
-    localStorage.setItem('lugares', JSON.stringify(lugaresCreados));
+    actualizarDisponibilidad('lugares');
+    actualizarDisponibilidad('lugaresPorDefecto');
 
     alert('Reserva confirmada');
     window.location.href = '../templates/inicio.html';
