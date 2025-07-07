@@ -221,3 +221,39 @@ h2 {
     justify-content: center;
   }
 }
+
+.custom-file-upload {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  button{
+    color: white;
+  }
+}
+
+.custom-file-upload input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload label {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.custom-file-upload label:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.custom-file-upload span {
+  font-size: 0.9rem;
+  color: #a0aec0;
+}
