@@ -53,9 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
     alert("¡Registro exitoso!");
 
     if (rol === 'gestor') {
-      window.location.href = '../templates/gestorInicio.html';
+      window.location.href = 'templates/gestorInicio.html';
     } else {
-      window.location.href = '../templates/inicio.html';
+      window.location.href = 'templates/inicio.html';
     }
   });
 });
