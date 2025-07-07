@@ -2,7 +2,8 @@ const usuarioActual = JSON.parse(localStorage.getItem('usuarioActual')) || {};
 const esAdmin = usuarioActual.rol === 'admin';
 
 let lugaresCreados = JSON.parse(localStorage.getItem('lugares')) || [];
-let lugares = [...lugaresCreados];
+let lugaresPorDefecto = JSON.parse(localStorage.getItem('lugaresPorDefecto')) || [];
+let lugares = [...lugaresPorDefecto, ...lugaresCreados];
 
 function renderLugares(lugaresToRender = lugares) {
   const grid = document.getElementById('lugaresGrid');
@@ -103,12 +104,31 @@ function eliminarLugar(id) {
   if (!confirm('¿Seguro que quieres eliminar este lugar?')) return;
 
   let creados = JSON.parse(localStorage.getItem('lugares')) || [];
-  creados = creados.filter(l => l.id !== id);
-  localStorage.setItem('lugares', JSON.stringify(creados));
+  let porDef = JSON.parse(localStorage.getItem('lugaresPorDefecto')) || [];
 
-  lugares = [...creados];
+  creados = creados.filter(l => l.id !== id);
+  porDef = porDef.filter(l => l.id !== id);
+
+  localStorage.setItem('lugares', JSON.stringify(creados));
+  localStorage.setItem('lugaresPorDefecto', JSON.stringify(porDef));
+
+  let reservasGlobal = JSON.parse(localStorage.getItem('reservas')) || [];
+  reservasGlobal = reservasGlobal.filter(r => r.lugarId !== id);
+  localStorage.setItem('reservas', JSON.stringify(reservasGlobal));
+
+  let reservasPorUsuario = JSON.parse(localStorage.getItem('reservasPorUsuario')) || {};
+  for (const email in reservasPorUsuario) {
+    reservasPorUsuario[email] = reservasPorUsuario[email].filter(r => r.lugarId !== id);
+    if (reservasPorUsuario[email].length === 0) {
+      delete reservasPorUsuario[email];
+    }
+  }
+  localStorage.setItem('reservasPorUsuario', JSON.stringify(reservasPorUsuario));
+
+  lugares = [...porDef, ...creados];
   renderLugares(lugares);
-  showNotification('Lugar eliminado y reservas canceladas.');
+
+  showNotification('Lugar eliminado y reservas asociadas canceladas.');
 }
 
 function showNotification(message, type = 'success') {
