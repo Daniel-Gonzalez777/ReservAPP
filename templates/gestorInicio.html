@@ -51,7 +51,11 @@
   <input type="number" id="precioLugar" required min="0">
 
   <label for="imagenesLugar">Imágenes (hasta 3)</label>
-  <input type="file" id="imagenesLugar" accept="image/*" multiple required>
+  <div class="custom-file-upload">
+    <input type="file" id="imagenesLugar" accept="image/*" multiple required>
+    <label for="imagenesLugar" id="labelImagenes" style="color: white;">Elegir imágenes</label>
+    <span id="cantidadArchivos">Ningún archivo seleccionado</span>
+  </div>
 
   <button type="submit">Publicar lugar</button>
 </form>

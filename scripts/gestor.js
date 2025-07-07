@@ -154,3 +154,19 @@ document.addEventListener('DOMContentLoaded', () => {
   mostrarLugaresGestor();
   setInterval(mostrarLugaresGestor, 3000);
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const inputImagenes = document.getElementById('imagenesLugar');
+  const cantidadArchivos = document.getElementById('cantidadArchivos');
+
+  inputImagenes.addEventListener('change', () => {
+    const archivos = inputImagenes.files;
+    if (archivos.length === 0) {
+      cantidadArchivos.textContent = 'Ningún archivo seleccionado';
+    } else if (archivos.length === 1) {
+      cantidadArchivos.textContent = archivos[0].name;
+    } else {
+      cantidadArchivos.textContent = `${archivos.length} archivos seleccionados`;
+    }
+  });
+});
