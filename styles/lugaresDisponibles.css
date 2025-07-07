@@ -389,3 +389,25 @@
             width: 95%;
         }
     }
+
+    .lugar-imagen.carrusel {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.lugar-imagen.carrusel img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease;
+  border-radius: 12px;
+}
+
+.lugar-imagen.carrusel img.active {
+  opacity: 1;
+}
+
