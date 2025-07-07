@@ -20,7 +20,6 @@
 
   <div class="container">
     
-    <!-- Sección de PERFIL -->
     <section id="seccionPerfil" style="display: none;">
       <h2>Mi Perfil</h2>
       <div class="perfil-info">
@@ -31,10 +30,10 @@
       </div>
     </section>
 
-    <!-- Sección de GESTIÓN -->
     <section id="seccionGestion">
       <section class="formulario-agregar">
         <h2>Agregar Nuevo Lugar</h2>
+  
         <form id="formAgregarLugar">
   <label for="nombreLugar">Nombre del lugar</label>
   <input type="text" id="nombreLugar" required>
@@ -51,8 +50,12 @@
   <label for="precioLugar">Precio por hora ($COP)</label>
   <input type="number" id="precioLugar" required min="0">
 
+  <label for="imagenesLugar">Imágenes (hasta 3)</label>
+  <input type="file" id="imagenesLugar" accept="image/*" multiple required>
+
   <button type="submit">Publicar lugar</button>
 </form>
+
 
       </section>
 

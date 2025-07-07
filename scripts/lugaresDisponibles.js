@@ -1,74 +1,8 @@
 const usuarioActual = JSON.parse(localStorage.getItem('usuarioActual')) || {};
 const esAdmin = usuarioActual.rol === 'admin';
 
-let lugaresPorDefecto = JSON.parse(localStorage.getItem('lugaresPorDefecto'));
-if (!lugaresPorDefecto) {
-  lugaresPorDefecto = [
-    {
-      id: 1,
-      nombre: "Sala de Conferencias A",
-      descripcion: "Amplio espacio ideal para presentaciones y reuniones corporativas con equipamiento audiovisual completo.",
-      capacidad: "20 personas",
-      precio: "$50/hora",
-      disponible: true,
-      icono: "🏢"
-    },
-    {
-      id: 2,
-      nombre: "Oficina Privada 1",
-      descripcion: "Espacio privado perfecto para reuniones ejecutivas y llamadas confidenciales.",
-      capacidad: "8 personas",
-      precio: "$30/hora",
-      disponible: true,
-      icono: "🏪"
-    },
-    {
-      id: 3,
-      nombre: "Espacio Coworking",
-      descripcion: "Ambiente colaborativo con mesas flexibles y excelente conectividad wifi.",
-      capacidad: "15 personas",
-      precio: "$25/hora",
-      disponible: true,
-      icono: "💼"
-    },
-    {
-      id: 4,
-      nombre: "Sala de Reuniones B",
-      descripcion: "Sala moderna con pizarra digital y sistema de videoconferencia integrado.",
-      capacidad: "12 personas",
-      precio: "$40/hora",
-      disponible: true,
-      icono: "📋"
-    },
-    {
-      id: 5,
-      nombre: "Auditorio Principal",
-      descripcion: "Gran auditorio con capacidad para eventos masivos y presentaciones importantes.",
-      capacidad: "100 personas",
-      precio: "$150/hora",
-      disponible: true,
-      icono: "🎭"
-    },
-    {
-      id: 6,
-      nombre: "Sala Creativa",
-      descripcion: "Espacio diseñado para brainstorming y sesiones creativas con mobiliario flexible.",
-      capacidad: "10 personas",
-      precio: "$35/hora",
-      disponible: true,
-      icono: "🎨"
-    }
-  ];
-  localStorage.setItem('lugaresPorDefecto', JSON.stringify(lugaresPorDefecto));
-}
-
-let lugaresCreados = JSON.parse(localStorage.getItem('lugares'));
-if (!lugaresCreados) {
-  lugaresCreados = [];
-  localStorage.setItem('lugares', JSON.stringify(lugaresCreados));
-}
-
-let lugares = [...lugaresPorDefecto, ...lugaresCreados];
+let lugaresCreados = JSON.parse(localStorage.getItem('lugares')) || [];
+let lugares = [...lugaresCreados];
 
 function renderLugares(lugaresToRender = lugares) {
   const grid = document.getElementById('lugaresGrid');
@@ -77,11 +11,18 @@ function renderLugares(lugaresToRender = lugares) {
   lugaresToRender.forEach(lugar => {
     const card = document.createElement('div');
     card.className = 'lugar-card';
+
+    const imagenes = lugar.imagenes || [];
+    const carrusel = imagenes.length > 0 ? `
+      <div class="lugar-imagen carrusel">
+        ${imagenes.map((img, i) => `<img src="${img}" class="slide ${i === 0 ? 'active' : ''}" />`).join('')}
+      </div>` : `<div class="lugar-imagen">${lugar.icono || '📍'}</div>`;
+
     card.innerHTML = `
       <div class="disponibilidad-badge ${lugar.disponible ? 'disponible' : 'ocupado'}">
         ${lugar.disponible ? 'Disponible' : 'Ocupado'}
       </div>
-      <div class="lugar-imagen">${lugar.icono}</div>
+      ${carrusel}
       <div class="lugar-content">
         <h3 class="lugar-nombre">${lugar.nombre}</h3>
         <p class="lugar-descripcion">${lugar.descripcion}</p>
@@ -100,6 +41,7 @@ function renderLugares(lugaresToRender = lugares) {
         </div>
       </div>
     `;
+
     grid.appendChild(card);
   });
 }
@@ -131,7 +73,7 @@ function verDetalles(id) {
   const modalContent = document.getElementById('modalContent');
 
   modalContent.innerHTML = `
-    <h2>${lugar.icono} ${lugar.nombre}</h2>
+    <h2>${lugar.icono || '📍'} ${lugar.nombre}</h2>
     <p><strong>Descripción:</strong> ${lugar.descripcion}</p>
     <p><strong>Capacidad:</strong> ${lugar.capacidad}</p>
     <p><strong>Precio:</strong> ${lugar.precio}</p>
@@ -143,7 +85,6 @@ function verDetalles(id) {
       <li>Proyector incluido</li>
     </ul>
   `;
-
   modal.style.display = 'block';
 }
 
@@ -165,28 +106,7 @@ function eliminarLugar(id) {
   creados = creados.filter(l => l.id !== id);
   localStorage.setItem('lugares', JSON.stringify(creados));
 
-  let porDef = JSON.parse(localStorage.getItem('lugaresPorDefecto')) || [];
-  porDef = porDef.filter(l => l.id !== id);
-  localStorage.setItem('lugaresPorDefecto', JSON.stringify(porDef));
-
-  let reservasGlobal = JSON.parse(localStorage.getItem('reservas')) || [];
-  reservasGlobal = reservasGlobal.filter(r => r.lugarId !== id);
-  localStorage.setItem('reservas', JSON.stringify(reservasGlobal));
-
-  let reservasPorUsuario = JSON.parse(localStorage.getItem('reservasPorUsuario')) || {};
-  for (let email in reservasPorUsuario) {
-    reservasPorUsuario[email] = reservasPorUsuario[email].filter(r => r.lugarId !== id);
-  }
-  localStorage.setItem('reservasPorUsuario', JSON.stringify(reservasPorUsuario));
-
-  porDef.forEach(l => {
-    if (l.id === id) l.disponible = true;
-  });
-  creados.forEach(l => {
-    if (l.id === id) l.disponible = true;
-  });
-
-  lugares = [...porDef, ...creados];
+  lugares = [...creados];
   renderLugares(lugares);
   showNotification('Lugar eliminado y reservas canceladas.');
 }
@@ -232,10 +152,9 @@ document.addEventListener('DOMContentLoaded', () => {
       navLinks.appendChild(adminLink);
     }
   }
-  renderLugares();
-});
 
-document.addEventListener('DOMContentLoaded', () => {
+  renderLugares();
+
   const btnCerrarSesion = document.getElementById('cerrarSesionBtn');
   if (btnCerrarSesion) {
     btnCerrarSesion.addEventListener('click', (e) => {
@@ -244,4 +163,14 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = 'ingresar.html';
     });
   }
+
+  setInterval(() => {
+    document.querySelectorAll('.lugar-imagen.carrusel').forEach(carrusel => {
+      const slides = carrusel.querySelectorAll('.slide');
+      const activa = carrusel.querySelector('.slide.active');
+      let index = Array.from(slides).indexOf(activa);
+      slides[index].classList.remove('active');
+      slides[(index + 1) % slides.length].classList.add('active');
+    });
+  }, 3000);
 });

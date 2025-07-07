@@ -1,24 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
   const usuarioActual = JSON.parse(localStorage.getItem('usuarioActual'));
 
-  // Elementos del DOM
   const contenedor = document.getElementById('lugaresContenedor');
   const form = document.getElementById('formAgregarLugar');
   const cerrarSesion = document.getElementById('cerrarSesion');
 
-  // Navegación entre secciones
   const linkPerfil = document.getElementById('linkPerfil');
   const linkGestionar = document.getElementById('linkGestionar');
   const seccionPerfil = document.getElementById('seccionPerfil');
   const seccionGestion = document.getElementById('seccionGestion');
 
-  // Perfil
   const perfilNombre = document.getElementById('perfilNombre');
   const perfilCorreo = document.getElementById('perfilCorreo');
   const perfilFecha = document.getElementById('perfilFecha');
   const perfilRol = document.getElementById('perfilRol');
 
-  // Mostrar lugares del gestor actual
   function mostrarLugaresGestor() {
     const lugares = JSON.parse(localStorage.getItem('lugares')) || [];
     const reservasPorUsuario = JSON.parse(localStorage.getItem('reservasPorUsuario')) || {};
@@ -46,7 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const div = document.createElement('div');
       div.classList.add('lugar-card');
 
+      const imagenes = lugar.imagenes || [];
+      const imagenHTML = imagenes.length > 0 ? `<img src="${imagenes[0]}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 10px;" />` : '';
+
       div.innerHTML = `
+        ${imagenHTML}
         <h3>${lugar.nombre}</h3>
         <p><strong>Ubicación:</strong> ${lugar.ubicacion}</p>
         <p><strong>Descripción:</strong> ${lugar.descripcion}</p>
@@ -61,8 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Agregar nuevo lugar
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const nombre = document.getElementById('nombreLugar').value.trim();
@@ -70,11 +69,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const descripcion = document.getElementById('descripcionLugar').value.trim();
     const capacidad = parseInt(document.getElementById('capacidadLugar').value.trim());
     const precio = document.getElementById('precioLugar').value.trim();
+    const archivos = document.getElementById('imagenesLugar').files;
 
-    if (!nombre || !ubicacion || !descripcion || isNaN(capacidad) || capacidad < 1 || !precio) {
+    if (!nombre || !ubicacion || !descripcion || isNaN(capacidad) || capacidad < 1 || !precio || archivos.length === 0) {
       alert('Por favor completa todos los campos correctamente');
       return;
     }
+
+    const imagenesBase64 = await Promise.all(Array.from(archivos).slice(0, 3).map(file => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }));
 
     const lugares = JSON.parse(localStorage.getItem('lugares')) || [];
 
@@ -86,7 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
       capacidad,
       precio: `$${precio}/hora`,
       disponible: true,
-      gestorId: usuarioActual.email
+      gestorId: usuarioActual.email,
+      imagenes: imagenesBase64
     };
 
     lugares.push(nuevoLugar);
@@ -96,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
     mostrarLugaresGestor();
   });
 
-  // Eliminar lugar
   contenedor.addEventListener('click', (e) => {
     if (e.target.classList.contains('eliminar')) {
       const id = parseInt(e.target.dataset.id);
@@ -111,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Cargar perfil
   function cargarPerfil() {
     perfilNombre.textContent = usuarioActual.nombre;
     perfilCorreo.textContent = usuarioActual.email;
@@ -119,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
     perfilRol.textContent = usuarioActual.rol;
   }
 
-  // Navegación entre secciones
   linkPerfil.addEventListener('click', (e) => {
     e.preventDefault();
     seccionPerfil.style.display = 'block';
@@ -137,17 +144,13 @@ document.addEventListener('DOMContentLoaded', () => {
     linkPerfil.classList.remove('active');
   });
 
-  // Cerrar sesión
   cerrarSesion.addEventListener('click', (e) => {
     e.preventDefault();
     localStorage.removeItem('usuarioActual');
     window.location.href = 'ingresar.html';
   });
 
-  // Inicialización
   cargarPerfil();
   mostrarLugaresGestor();
-
-  // Actualización automática cada 3 segundos
   setInterval(mostrarLugaresGestor, 3000);
 });
