@@ -30,6 +30,18 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    const reservasPorUsuario = JSON.parse(localStorage.getItem('reservasPorUsuario')) || {};
+    const reservasGlobal = JSON.parse(localStorage.getItem('reservas')) || [];
+
+    const yaReservado = reservasGlobal.some(r =>
+      r.lugarId === lugar.id && r.fecha === fechaInput
+    );
+
+    if (yaReservado) {
+      alert("Esta fecha ya está reservada para este lugar");
+      return;
+    }
+
     const reserva = {
       lugarId: lugar.id,
       lugar: lugar.nombre,
@@ -43,26 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const email = usuarioActual.email;
-    let reservasPorUsuario = JSON.parse(localStorage.getItem('reservasPorUsuario')) || {};
     if (!reservasPorUsuario[email]) reservasPorUsuario[email] = [];
     reservasPorUsuario[email].push(reserva);
     localStorage.setItem('reservasPorUsuario', JSON.stringify(reservasPorUsuario));
 
-    let reservasGlobal = JSON.parse(localStorage.getItem('reservas')) || [];
     reservasGlobal.push(reserva);
     localStorage.setItem('reservas', JSON.stringify(reservasGlobal));
-
-    const actualizarDisponibilidad = (clave) => {
-      const lista = JSON.parse(localStorage.getItem(clave)) || [];
-      const index = lista.findIndex(l => l.id === lugar.id);
-      if (index !== -1) {
-        lista[index].disponible = false;
-        localStorage.setItem(clave, JSON.stringify(lista));
-      }
-    };
-
-    actualizarDisponibilidad('lugares');
-    actualizarDisponibilidad('lugaresPorDefecto');
 
     alert('Reserva confirmada');
     window.location.href = '../templates/inicio.html';
