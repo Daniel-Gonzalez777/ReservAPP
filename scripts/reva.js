@@ -29,6 +29,8 @@ async function sendToGemini() {
 }
 
 function generarPromptConLugares(lugares) {
+  const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+
   if (!lugares.length) {
     return `
 Eres REVA, la asistente virtual de ReservApp.
@@ -42,9 +44,22 @@ Solo responde con base en los datos del sistema.
   }
 
   const lista = lugares.map((l, i) => {
+   const fechasReservadas = reservas
+  .filter(r => r.lugarId === l.id)
+  .map(r => `📅 ${r.fecha}`)
+  .join('\n    - ');
+
+
     const estado = l.disponible ? "Disponible" : "Ocupado";
-    return `${i + 1}. ${l.nombre} – ${l.descripcion}, ubicado en ${l.ubicacion}, capacidad: ${l.capacidad}, precio: ${l.precio}. Estado: ${estado}.`;
-  }).join('\n');
+
+    return `${i + 1}. ${l.nombre}
+    - Descripción: ${l.descripcion}
+    - Ubicación: ${l.ubicacion}
+    - Capacidad: ${l.capacidad}
+    - Precio: ${l.precio}
+    - Estado: ${estado}
+    ${fechasReservadas ? `- Fechas reservadas:\n    - ${fechasReservadas}` : "- Sin fechas reservadas"}`;
+  }).join('\n\n');
 
   return `
 IMPORTANTE:
