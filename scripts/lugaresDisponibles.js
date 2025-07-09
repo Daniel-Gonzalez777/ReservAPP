@@ -168,8 +168,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const adminLink = document.createElement('a');
       adminLink.href = 'adminInicio.html';
       adminLink.className = 'nav-link';
-      adminLink.textContent = 'Panel Admin';
-      navLinks.appendChild(adminLink);
+      adminLink.textContent = 'Panel Administrador';
+      const cerrarSesionLink = document.getElementById('cerrarSesionBtn');
+      navLinks.insertBefore(adminLink, cerrarSesionBtn);
     }
   }
 
